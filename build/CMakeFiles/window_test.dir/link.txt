@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/window_test.dir/src/Display.cpp.o  -o window_test -lGL -lGLU 
