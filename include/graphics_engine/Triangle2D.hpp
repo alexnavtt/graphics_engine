@@ -1,18 +1,18 @@
-#ifndef TRIANGLE_HPP_
-#define TRIANGLE_HPP_
+#ifndef TRIANGLE_2D_HPP_
+#define TRIANGLE_2D_HPP_
 
 #include "graphics_engine/GraphicsTypes.hpp"
 
-struct Triangle{
-    Triangle(){}
+struct Triangle2D{
+    Triangle2D(){}
     
-    Triangle(Point a, Point b, Point c){
+    Triangle2D(Point2D a, Point2D b, Point2D c){
         memcpy(&vertices[0], a.data(), sizeof(a.data()));
         memcpy(&vertices[6], b.data(), sizeof(b.data()));
         memcpy(&vertices[12], c.data(), sizeof(c.data()));
     }
 
-    Triangle(float x1, float y1, float x2, float y2, float x3, float y3){
+    Triangle2D(float x1, float y1, float x2, float y2, float x3, float y3){
         vertices[0]  = x1;
         vertices[1]  = y1;
         vertices[6]  = x2;
@@ -21,10 +21,10 @@ struct Triangle{
         vertices[13] = y3;
     }
 
-    GLfloat vertices[18] = {0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1};
-    
-    Vec normal;
-    
+    GLfloat vertices[18] = {0, 0, 1, 0, 0, 1, 
+                            0, 0, 1, 0, 1, 1, 
+                            0, 0, 1, 1, 0, 1};
+        
     Colour colour;
 };
 
