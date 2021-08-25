@@ -5,9 +5,6 @@
 #include <GL/glew.h>
 #include <memory>
 
-// typedef std::array<GLfloat,3> Point;
-typedef std::array<GLfloat,3> Vec;
-
 struct DisplayException : public std::exception
 {
 	const char * what () const throw ()
@@ -17,40 +14,67 @@ struct DisplayException : public std::exception
 };
 
 struct Colour{
-    float r = 1;
-    float g = 0;
-    float b = 0;
-    float a = 1;
+    float& r() {return data_[0];}
+    float& g() {return data_[1];}
+    float& b() {return data_[2];}
+    float& a() {return data_[3];}
 
-    float* data(){
-        data_[0] = r;
-        data_[1] = g;
-        data_[2] = b;
-        data_[3] = a;
+    const float r() const {return data_[0];}
+    const float g() const {return data_[1];}
+    const float b() const {return data_[2];}
+    const float a() const {return data_[3];}
 
-        return data_;
-    }
+    float* data(){return data_;}
 
 private:
-    float data_[4];
+    float data_[4] = {0, 0, 0, 1};
 };
 
-struct Point{
-    float x;
-    float y;
+struct Point2D{
+    float& x() {return pos_[0];}
+    float& y() {return pos_[1];}
+    const float x() const {return pos_[0];}
+    const float y() const {return pos_[1];}
+
     Colour colour;
 
     float* data(){
-        data_[0] = x;
-        data_[1] = y;
+        memcpy(data_, pos_, sizeof(pos_));
         const float* c_data = colour.data();
         memcpy(data_ + 2, c_data, sizeof(c_data));
         return data_;
     }
 private:
+    float pos_[2];
     float data_[6];
 };
 
-typedef std::shared_ptr<Point> PointPtr;
+struct Point3D{
+    float& x() {return pos_[0];}
+    float& y() {return pos_[1];}
+    float& z() {return pos_[2];}
+    const float x() const {return pos_[0];}
+    const float y() const {return pos_[1];}
+    const float z() const {return pos_[2];}
+
+    Colour colour;
+
+    float* data(){
+        memcpy(data_, pos_, sizeof(pos_));
+        const float* c_data = colour.data();
+        memcpy(data_ + 2, c_data, sizeof(c_data));
+        return data_;
+    }
+
+private:
+    float pos_[3];
+    float data_[7];
+};
+
+typedef Point2D Vec2D;
+typedef Point3D Vec3D;
+
+
+typedef std::shared_ptr<Point2D> PointPtr;
 
 #endif
