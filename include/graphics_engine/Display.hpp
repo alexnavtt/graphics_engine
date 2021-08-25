@@ -10,19 +10,18 @@
 #include "GLFW/glfw3.h"
 
 #include "graphics_engine/Line.hpp"
-#include "graphics_engine/Traingle.hpp"
+#include "graphics_engine/Triangle2D.hpp"
 
-
-class Window{
+class Display{
 public:
     // Constructor: Great a GL Window
-    Window();
+    Display();
 
     // Close the window
     void close();
 
     // Draw a triangle in the window. Requires a followup call to render()
-    void drawTriangle(Triangle& T);
+    void drawTriangle(Triangle2D& T);
 
     void drawLine(const Line& L);
 

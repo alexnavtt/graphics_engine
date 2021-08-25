@@ -9,7 +9,7 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-Window::Window(){
+Display::Display(){
     // --- Start GLFW (Window Library) --- //
     if (!glfwInit()){
         std::cout << "Whoops, didn't work" << std::endl;  
@@ -68,23 +68,23 @@ Window::Window(){
 	}
 }
 
-void Window::close(){
+void Display::close(){
     glfwDestroyWindow(window_);
 }
 
-void Window::setBackgroundColor(float r, float g, float b, float a){
+void Display::setBackgroundColor(float r, float g, float b, float a){
     glClearColor(r, g, b, a);
     glClear( GL_COLOR_BUFFER_BIT );
 }
 
-void Window::render(){
+void Display::render(){
     glfwSwapBuffers(window_);
     glfwPollEvents();
     glClear( GL_COLOR_BUFFER_BIT );
 }
 
-void Window::drawLine(const Line& L){
-    float data[] = {L.p1.x, L.p1.y, L.p2.x, L.p2.y};
+void Display::drawLine(const Line& L){
+    float data[] = {L.p1.x(), L.p1.y(), L.p2.x(), L.p2.y()};
 
     GLuint buffer_id;
     glGenBuffers(1, &buffer_id);
@@ -98,7 +98,7 @@ void Window::drawLine(const Line& L){
     glDisableVertexAttribArray(0);
 }
 
-void Window::drawTriangle(Triangle& T){
+void Display::drawTriangle(Triangle2D& T){
     GLuint vertex_buffer;
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
@@ -118,12 +118,12 @@ void Window::drawTriangle(Triangle& T){
 }
 
 int main(){
-    Window win;
+    Display win;
     win.setBackgroundColor(0.4, 0.0, 0.4, 0.0);
     win.render();
     usleep(1000000);
     
-    Triangle tri(0.0, -0.9, 0.9, 0.9, -0.9, 0.9);
+    Triangle2D tri(0.0, -0.9, 0.9, 0.9, -0.9, 0.9);
     win.drawTriangle(tri);
     Line L{0, 0, 0.5, 0.5};
     // win.drawLine(L);
