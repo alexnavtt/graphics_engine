@@ -1,14 +1,15 @@
 #ifndef TRIANGLE_3D_HPP_
 #define TRIANGLE_3D_HPP_
 
+#include <cstring>
 #include "graphics_engine/GraphicsTypes.hpp"
 
 struct Triangle3D{
     Triangle3D(){}
     
     Triangle3D(Point3D a, Point3D b, Point3D c){
-        memcpy(&vertices[0], a.data(), sizeof(a.data()));
-        memcpy(&vertices[7], b.data(), sizeof(b.data()));
+        memcpy(&vertices[0],  a.data(), sizeof(a.data()));
+        memcpy(&vertices[7],  b.data(), sizeof(b.data()));
         memcpy(&vertices[14], c.data(), sizeof(c.data()));
     }
 
