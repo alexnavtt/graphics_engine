@@ -4,6 +4,9 @@
 #include <array>
 #include <GL/glew.h>
 #include <memory>
+#include <cstring>
+#include <math.h>
+#include <iostream>
 
 struct DisplayException : public std::exception
 {
@@ -50,6 +53,13 @@ private:
 };
 
 struct Point3D{
+    Point3D(){}
+    Point3D(float x, float y, float z){
+        pos_[0] = x;
+        pos_[1] = y;
+        pos_[2] = z;
+    }
+
     float& x() {return pos_[0];}
     float& y() {return pos_[1];}
     float& z() {return pos_[2];}
@@ -64,6 +74,18 @@ struct Point3D{
         const float* c_data = colour.data();
         memcpy(data_ + 2, c_data, sizeof(c_data));
         return data_;
+    }
+
+    float norm(){
+        return sqrt(sqNorm());
+    }
+
+    float sqNorm(){
+        return pos_[0]*pos_[0] + pos_[1]*pos_[1] + pos_[2]*pos_[2];
+    }
+
+    void print(){
+        std::cout << "(" << x() << ", " << y() << ", " << z() << ")" << std::endl;
     }
 
 private:
