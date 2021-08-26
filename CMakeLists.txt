@@ -20,3 +20,6 @@ set(LIBS
 
 add_executable(window_test src/Display.cpp)
 target_link_libraries(window_test ${LIBS})
+
+add_executable(projection_test src/projection_test.cpp)
+target_link_libraries(projection_test ${LIBS})
