@@ -18,8 +18,8 @@ set(LIBS
     ${GLEW_LIBRARIES}
 )
 
-add_executable(window_test src/Display.cpp)
-target_link_libraries(window_test ${LIBS})
+# add_executable(window_test src/Display.cpp)
+# target_link_libraries(window_test ${LIBS})
 
-add_executable(projection_test src/projection_test.cpp)
+add_executable(projection_test src/projection_test.cpp src/Display.cpp)
 target_link_libraries(projection_test ${LIBS})

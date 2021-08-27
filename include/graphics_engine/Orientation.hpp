@@ -3,7 +3,7 @@
 
 #include <math.h>
 #include <iostream>
-#include "graphics_engine/GraphicsTypes.hpp"
+#include "graphics_engine/ThreeDim/Point3D.hpp"
 
 struct Orientation{
 public:
@@ -53,9 +53,9 @@ public:
         Orientation z_rot(  cos(0.5*yaw),              0,              0, sin(0.5*yaw));
 
         Orientation q_out;
-        q_out = q_out * x_rot;
-        q_out = q_out * y_rot;
-        q_out = q_out * z_rot;
+        q_out = x_rot * q_out;
+        q_out = y_rot * q_out;
+        q_out = z_rot * q_out;
         
         memcpy(data_, q_out.data_, sizeof(q_out.data_));
     }

@@ -21,9 +21,11 @@ public:
     void close();
 
     // Draw a triangle in the window. Requires a followup call to render()
-    void drawTriangle(Triangle2D& T);
+    void drawTriangle(Triangle2D& T) const;
 
     void drawLine(const Line& L);
+
+    void drawElementArray(std::vector<Point2D>& points, const std::vector<GLuint>& array) const;
 
     // Set the window background colour. Requires a followup call to render()
     void setBackgroundColor(float r, float g, float b, float a);

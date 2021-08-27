@@ -1,7 +1,7 @@
 #ifndef LINE_HPP_
 #define LINE_HPP_
 
-#include "graphics_engine/GraphicsTypes.hpp"
+#include "graphics_engine/TwoDim/Point2D.hpp"
 
 struct Line{
     Point2D p1;
