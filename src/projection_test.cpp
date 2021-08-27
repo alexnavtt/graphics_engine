@@ -1,8 +1,8 @@
 #include <iostream>
 #include <unistd.h>
-#include "graphics_engine/Mesh.hpp"
-#include "graphics_engine/Display.hpp"
-#include "graphics_engine/Observer.hpp"
+#include "graphics_engine/base/Display.hpp"
+#include "graphics_engine/ThreeDim/Mesh.hpp"
+#include "graphics_engine/ThreeDim/Observer.hpp"
 
 int main(){
     Mesh cube;

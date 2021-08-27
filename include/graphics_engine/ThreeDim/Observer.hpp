@@ -1,7 +1,9 @@
 #ifndef OBSERVER_HPP_
 #define OBSERVER_HPP_
 
-#include "graphics_engine/Orientation.hpp"
+#include "graphics_engine/ThreeDim/Mesh.hpp"
+#include "graphics_engine/ThreeDim/Triangle3D.hpp"
+#include "graphics_engine/ThreeDim/Orientation.hpp"
 
 class Observer{
 public:

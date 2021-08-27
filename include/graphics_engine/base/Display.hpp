@@ -9,8 +9,8 @@
 #include <GL/glew.h>
 #include "GLFW/glfw3.h"
 
-#include "graphics_engine/Line.hpp"
-#include "graphics_engine/Triangle2D.hpp"
+#include "graphics_engine/TwoDim/Line.hpp"
+#include "graphics_engine/TwoDim/Triangle2D.hpp"
 
 class Display{
 public:

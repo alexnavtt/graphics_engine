@@ -2,8 +2,8 @@
 #define MESH_HPP_
 
 #include <vector>
-#include "graphics_engine/Triangle3D.hpp"
-#include "graphics_engine/Orientation.hpp"
+#include "graphics_engine/ThreeDim/Orientation.hpp"
+#include "graphics_engine/ThreeDim/Triangle3D.hpp"
 
 class Mesh{
 public:

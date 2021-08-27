@@ -5,8 +5,8 @@
 #include <iostream>
 #include <unistd.h>
 
+#include "graphics_engine/base/Display.hpp"
 #include "graphics_engine/base/Exceptions.hpp"
-#include "graphics_engine/Display.hpp"
 
 using std::vector;
 using std::cout;
@@ -152,23 +152,3 @@ void Display::drawElementArray(vector<Point2D>& points, const vector<GLuint>& ar
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*array.size(), array.data(), GL_STATIC_DRAW);
 }
-
-// int main(){
-//     Display win;
-//     win.setBackgroundColor(0.4, 0.0, 0.4, 0.0);
-//     win.render();
-//     usleep(1000000);
-    
-//     Triangle2D tri(0.0, -0.9, 0.9, 0.9, -0.9, 0.9);
-//     win.drawTriangle(tri);
-//     Line L{0, 0, 0.5, 0.5};
-//     // win.drawLine(L);
-//     win.render();
-//     usleep(1000000);
-    
-//     win.close();
-//     usleep(1000000);
-    
-//     glfwTerminate();
-//     return 0;
-// }
