@@ -6,8 +6,6 @@ find_package(glfw3 REQUIRED)
 find_package(Threads REQUIRED)
 find_package(GLEW REQUIRED)
 
-add_definitions(-DGLEW_STATIC)
-
 include_directories(include)
 
 set(LIBS
