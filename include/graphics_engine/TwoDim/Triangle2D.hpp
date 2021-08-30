@@ -42,9 +42,9 @@ struct Triangle2D{
         return sizeof(vertices);
     }
 
-    GLfloat vertices[21] = {0, 0, 0,    1, 1, 1, 1, 
-                            0, 0, 0,    1, 1, 1, 1, 
-                            0, 0, 0,    1, 1, 1, 1};
+    float vertices[21] = {0, 0, 0,    1, 1, 1, 1, 
+                          0, 0, 0,    1, 1, 1, 1, 
+                          0, 0, 0,    1, 1, 1, 1};
         
     Colour colour;
 
