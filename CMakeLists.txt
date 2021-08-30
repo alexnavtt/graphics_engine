@@ -17,7 +17,10 @@ set(LIBS
 )
 
 set(SOURCES
+    src/Point3D.cpp
     src/Display.cpp
+    src/Observer.cpp
+    src/Orientation.cpp
 )
 
 add_executable(projection_test src/projection_test.cpp ${SOURCES})

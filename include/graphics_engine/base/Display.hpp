@@ -25,7 +25,7 @@ public:
 
     void drawLine(const Line& L);
 
-    void drawElementArray(std::vector<Point2D>& points, const std::vector<GLuint>& array) const;
+    void drawTriangleArray(std::vector<Point2D>& points, const std::vector<GLuint>& array) const;
 
     // Set the window background colour. Requires a followup call to render()
     void setBackgroundColor(float r, float g, float b, float a);
