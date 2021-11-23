@@ -131,14 +131,14 @@ void Display::drawTriangle(Triangle2D& T) const{
     glDisableVertexAttribArray(2);
 }
 
-void Display::drawTriangleArray(vector<Point2D>& points, const vector<GLuint>& array) const{
+void Display::drawTriangleArray(const vector<Point2D>& points, const vector<GLuint>& array) const{
     if (points.empty()) return;
 
     // Get the point data in the right form
     vector<float> vertices;
     const uint point_elements = points[0].dataSize()/sizeof(float);
     vertices.reserve(points.size()*point_elements);
-    for (Point2D& p : points){
+    for (const Point2D& p : points){
         const float* data = p.data();
         for (int i = 0; i < point_elements; i++){
             vertices.push_back(p.data()[i]);
@@ -168,6 +168,60 @@ void Display::drawTriangleArray(vector<Point2D>& points, const vector<GLuint>& a
     glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(float)*7, (void*)(sizeof(float)*2));
 
     glDrawElements(GL_TRIANGLES, array.size(), GL_UNSIGNED_INT, (void*)(0));
+
+    // Clear permissions so that other functions can work
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(2);
+}
+
+void Display::drawLineArray(const vector<Point2D>& points, const vector<GLuint>& indices, const Colour* colour) const{
+    if (points.empty()) return;
+
+    // Get the point data in the right form
+    vector<float> vertices;
+    const uint point_elements = points[0].dataSize()/sizeof(float);
+    vertices.reserve(points.size()*point_elements);
+    for (const Point2D& p : points){
+        vertices.push_back(p.x());
+        vertices.push_back(p.y());
+        vertices.push_back(p.depth());
+        if (colour == NULL){
+            vertices.push_back(p.r());
+            vertices.push_back(p.g());
+            vertices.push_back(p.b());
+            vertices.push_back(p.a());
+        }else{
+            vertices.push_back(colour->r());
+            vertices.push_back(colour->g());
+            vertices.push_back(colour->b());
+            vertices.push_back(colour->a());
+        }
+    }
+
+    GLuint vertex_buffer;
+    glGenBuffers(1, &vertex_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float)*vertices.size(), vertices.data(), GL_STATIC_DRAW);
+
+    GLuint element_buffer;
+    glGenBuffers(1, &element_buffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*indices.size(), indices.data(), GL_STATIC_DRAW);
+
+    // Enable vertex array
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float)*7, (void*)(0));
+
+    // Enable colour array
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float)*7, (void*)(sizeof(float)*3));
+
+    // Enable depth buffer
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(float)*7, (void*)(sizeof(float)*2));
+
+    glDrawElements(GL_LINES, indices.size(), GL_UNSIGNED_INT, (void*)(0));
 
     // Clear permissions so that other functions can work
     glDisableVertexAttribArray(0);
