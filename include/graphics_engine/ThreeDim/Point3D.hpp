@@ -70,6 +70,12 @@ public:
 class Vec3D : public Point3D{
 public:
     /**
+     * Constructor
+     */
+    Vec3D() : Point3D() {}
+    Vec3D(float x, float y, float z) : Point3D(x, y, z) {}
+
+    /**
      * Add a vector to a point to get another point
      */
     Point3D operator +(const Point3D& p) const{
