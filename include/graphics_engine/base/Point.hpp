@@ -55,6 +55,16 @@ public:
     void setColour(const Colour& c){
         memcpy(&data_[3], c.data(), sizeof(float)*4);
     }
+
+    /**
+     * Set the colour of the point
+     */
+    void setColour(float r, float g, float b, float a = 1){
+        data_[3] = r;
+        data_[4] = g;
+        data_[5] = b;
+        data_[6] = a;
+    }
     
 protected:
     /**
