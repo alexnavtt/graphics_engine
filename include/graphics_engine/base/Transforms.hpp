@@ -6,7 +6,7 @@
 #include "graphics_engine/ThreeDim/Orientation.hpp"
 
 struct Transform3D{
-    Point3D translation;
+    Vec3D translation;
     Orientation rotation;
 };
 
