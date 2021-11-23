@@ -3,56 +3,17 @@
 #include "graphics_engine/base/Display.hpp"
 #include "graphics_engine/ThreeDim/Mesh.hpp"
 #include "graphics_engine/ThreeDim/Observer.hpp"
+#include "graphics_engine/MeshPrimitives/Axis.hpp"
 #include "graphics_engine/MeshPrimitives/Cube.hpp"
+#include "graphics_engine/MeshPrimitives/Cylinder.hpp"
 
 int main(){
-    // Mesh cube;
-    // // Far face
-    // cube.triangles.push_back(Triangle3D({1, 1, 1}, {1, -1, 1}, {1, 1, -1}));
-    // cube.triangles.push_back(Triangle3D({1, -1, 1}, {1, -1, -1}, {1, 1, -1}));
-    // // Left face
-    // cube.triangles.push_back(Triangle3D({1, 1, 1}, {-1, 1, 1}, {-1, 1, -1}));
-    // cube.triangles.push_back(Triangle3D({1, 1, 1}, {-1, 1, -1}, {1, 1, -1}));
-    // // Right face
-    // cube.triangles.push_back(Triangle3D({1, -1, 1}, {-1, -1, 1}, {-1, -1, -1}));
-    // cube.triangles.push_back(Triangle3D({1, -1, 1}, {-1, -1, -1}, {1, -1, -1}));
-    // // Rear face
-    // cube.triangles.push_back(Triangle3D({-1, 1, 1}, {-1, -1, 1}, {-1, 1, -1}));
-    // cube.triangles.push_back(Triangle3D({-1, -1, 1}, {-1, -1, -1}, {-1, 1, -1}));
-    // // Top face 
-    // cube.triangles.push_back(Triangle3D({1, 1, 1}, {1, -1, 1}, {-1, -1, 1}));
-    // cube.triangles.push_back(Triangle3D({1, 1, 1}, {-1, -1, 1}, {-1, 1, 1}));
-    // // Bottom face
-    // cube.triangles.push_back(Triangle3D({1, 1, -1}, {1, -1, -1}, {-1, -1, -1}));
-    // cube.triangles.push_back(Triangle3D({1, 1, -1}, {-1, -1, -1}, {-1, 1, -1}));
+    // Cube cube(2, {0, 0, 0});
+    Cylinder cube(1, 2, Pose3D(), 100);
+    cube.draw_outline = true;
+    cube.shade_faces  = true;
 
-    // cube.triangles[0].colour.r() = 1;
-    // cube.triangles[1].colour.g() = 1;
-    // cube.triangles[2].colour.b() = 1;
-    // cube.triangles[3].colour.r() = 0.5;
-    // cube.triangles[4].colour = Colour(1, 1, 0, 1);
-    // cube.triangles[5].colour = Colour(1, 0, 1, 1);
-    // cube.triangles[6].colour = Colour(0, 1, 1, 1);
-    // cube.triangles[7].colour = Colour(1, 1, 1, 1);
-    // cube.triangles[8].colour = Colour(0.5, 0.5, 1, 1);
-    // cube.triangles[9].colour = Colour(0.5, 1, 0.5, 1);
-    // cube.triangles[10].colour = Colour(1, 0.5, 0.5, 1);
-    // cube.triangles[11].colour = Colour(0.5, 0.5, 0.5, 1);
-
-    // cube.points.push_back({ 1,  1, 1});
-    // cube.points.push_back({-1,  1, 1});
-    // cube.points.push_back({-1, -1, 1});
-    // cube.points.push_back({ 1, -1, 1});
-    // cube.points.push_back({ 1,  1, -1});
-    // cube.points.push_back({-1,  1, -1});
-    // cube.points.push_back({-1, -1, -1});
-    // cube.points.push_back({ 1, -1, -1});
-
-    // cube.indices = {0, 1, 3,   1, 2, 3,   0, 3, 7,   3, 7, 4, 
-    //                 5, 4, 7,   7, 6, 5,   1, 5, 6,   6, 2, 1,
-    //                 0, 4, 1,   4, 5, 1,   2, 3, 7,   7, 6, 2};
-    // cube.use_element_array = true;
-    Cube cube(2, {0, 0, 0});
+    Axis ax(Point3D(0, 1, 0));
 
     int i = 0;
     for (Point3D &p : cube.points){
@@ -84,6 +45,7 @@ int main(){
         obs.ori.setRPY(0, yaw, 0);
 
         obs.drawMesh(cube, disp);
+        obs.drawMesh(ax, disp);
         disp.render();
 
         yaw += 0.01;
